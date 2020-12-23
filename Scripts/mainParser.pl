@@ -13,7 +13,7 @@ my $basename = basename($FILENAME);
 my $nameID = shift;
 
 open(SOURCE,'<',$FILENAME) or die "Error opening \"$FILENAME\": $!";
-open(OUTPUT,'>',"../Output/$basename.pos") or die "Error opening \"../Output/$basename\": $!\n";
+open(OUTPUT,'>',"/proc/self/fd/1") or die "Error opening \"../Output/$basename\": $!\n";
 
 my ($line, $fullName, $splitName, $taggedName, $groupedName, @phrase);
 while ($line = <SOURCE>) {
@@ -28,24 +28,24 @@ while ($line = <SOURCE>) {
     @phrase = Grouper::parsePhrase($taggedName);
     if($nameID eq "M")
     {
-        print "Method Name: $fullName\n";
+        #print "Method Name: $fullName\n";
         $groupedName = Grouper::group($basename,$isCons,@phrase);
     }
     elsif($nameID eq "C")
     {
-        print "Class Name: $fullName\n";
+        #print "Class Name: $fullName\n";
         $groupedName = GrouperAttr::group($basename,$isCons,@phrase);
     }
     elsif($nameID eq "A" )
     {
          if($isbool == 1 or $isboolean == 1)
          {
-             print "Bool Attr Name: $fullName\n";
+             #print "Bool Attr Name: $fullName\n";
              $groupedName = Grouper::group($basename,$isCons,@phrase);
          }
         else
         {
-            print "Non-Bool Attr Name: $fullName\n";
+            #print "Non-Bool Attr Name: $fullName\n";
             $groupedName = GrouperAttr::group($basename,$isCons,@phrase);
         }
     
