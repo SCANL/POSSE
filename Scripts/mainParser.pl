@@ -39,11 +39,11 @@ elsif($nameID eq "A" )
             #print "Bool Attr Name: $fullName\n";
             $groupedName = Grouper::group($basename,$isCons,@phrase);
         }
-    else
-    {
-        #print "Non-Bool Attr Name: $fullName\n";
-        $groupedName = GrouperAttr::group($basename,$isCons,@phrase);
-    }    
+        else
+        {
+            #print "Non-Bool Attr Name: $fullName\n";
+            $groupedName = GrouperAttr::group($basename,$isCons,@phrase);
+        }
 }
 print "$fullName | ";
 print "$groupedName\n";
