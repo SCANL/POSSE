@@ -5,34 +5,29 @@ package Tagger;
 
 use warnings;
 use strict;
-use File::Basename;
 
 ##### SOURCE AND OUTPUT FILES
-our $FILENAME = shift;
-my $base = basename($FILENAME);
-my $DICTIONARY = "../Dictionaries/dictionary-allwords";
-my $PREPOSITIONS = "../Dictionaries/preposition";
-my $QUANTIFIERS = "../Dictionaries/quant";
-my $IRREGULARV = "../Dictionaries/irregV";
-my $ADJECTIVES = "../Dictionaries/adjective";
-my $ADVERBS = "../Dictionaries/adverb";
-my $PARTICIPLES = "../Dictionaries/participle";
-my $NOUNS = "../Dictionaries/noun";
-my $VERBS = "../Dictionaries/verb";
-my $PRONOUNS = "../Dictionaries/pronoun";
-my $DEPENDS = "../Dictionaries/dlist";
-my $NORULE = "../Dictionaries/norule";
-my $NABBRS = "../Dictionaries/n-abbr";
+my $DICTIONARY = "../POSSE/Dictionaries/dictionary-allwords";
+my $PREPOSITIONS = "../POSSE/Dictionaries/preposition";
+my $QUANTIFIERS = "../POSSE/Dictionaries/quant";
+my $IRREGULARV = "../POSSE/Dictionaries/irregV";
+my $ADJECTIVES = "../POSSE/Dictionaries/adjective";
+my $ADVERBS = "../POSSE/Dictionaries/adverb";
+my $PARTICIPLES = "../POSSE/Dictionaries/participle";
+my $NOUNS = "../POSSE/Dictionaries/noun";
+my $VERBS = "../POSSE/Dictionaries/verb";
+my $PRONOUNS = "../POSSE/Dictionaries/pronoun";
+my $DEPENDS = "../POSSE/Dictionaries/dlist";
+my $NORULE = "../POSSE/Dictionaries/norule";
+my $NABBRS = "../POSSE/Dictionaries/n-abbr";
 
 ##### CLOSED LISTS
 
-open SOURCE,"<$FILENAME" or die "Error opening $$FILENAME\n";
 my ($line, @split, $SOURCE);
-foreach $line (<SOURCE>) {
+foreach $line ($ARGV[1]) {
   @split = split(/ \| /,$line);
   $SOURCE .= pop @split;
 }
-close SOURCE;
 
 open DICTIONARY,"<$DICTIONARY" or die "Error opening $DICTIONARY\n";
 my $DICT = join('',<DICTIONARY>);
